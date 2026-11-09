@@ -30,24 +30,23 @@ Task 4  Sets
 
 print("--- Task 1: lists ---")
 fruits = ["apple", "banana", "cherry", "date", "elderberry"]
-first_fruit = None
-last_fruit = None
-middle_three = None
+first_fruit = fruits[0]
+last_fruit = fruits[-1]
+middle_three = fruits[1:4]
 print(f"First: {first_fruit}, last: {last_fruit}, middle: {middle_three}")
 
 print("\n--- Task 2: tuples ---")
 location = (51.5074, -0.1278)
-latitude = None
-longitude = None
+latitude, longitude = location
 print(f"Latitude {latitude}, longitude {longitude}")
 
 print("\n--- Task 3: dictionaries ---")
 student = {"name": "Ada", "age": 21, "course": "Software Development"}
-student_course = None
-age_next_year = None
+student_course = student["course"]
+age_next_year = student["age"] + 1
 print(f"{student['name']} studies {student_course} and will be {age_next_year} next year")
 
 print("\n--- Task 4: sets ---")
 registrations = ["Ada", "Alan", "Ada", "Grace", "Alan", "Linus"]
-unique_count = None
+unique_count = len(set(registrations))
 print(f"{len(registrations)} registrations from {unique_count} different students")

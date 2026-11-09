@@ -13,7 +13,10 @@ def safe_divide(a, b):
         safe_divide(10, 4) -> 2.5
         safe_divide(10, 0) -> None
     """
-    raise NotImplementedError("Write your code here")
+    try:
+        return a / b
+    except ZeroDivisionError:
+        return None
 
 
 def parse_age(text):
@@ -27,7 +30,13 @@ def parse_age(text):
         parse_age("abc")  -> raises ValueError
         parse_age("-4")   -> raises ValueError
     """
-    raise NotImplementedError("Write your code here")
+    try:
+        age = int(text.strip())
+    except ValueError:
+        raise ValueError(f"Not a whole number: {text!r}")
+    if age < 0 or age > 130:
+        raise ValueError(f"Age out of range: {age}")
+    return age
 
 
 def percentage(part, whole):
@@ -39,4 +48,6 @@ def percentage(part, whole):
         percentage(18, 24) -> 75.0
         percentage(1, 3)   -> 33.3
     """
-    raise NotImplementedError("Write your code here")
+    if whole <= 0:
+        raise ValueError("whole must be greater than zero")
+    return round(part / whole * 100, 1)

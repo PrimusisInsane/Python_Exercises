@@ -15,7 +15,9 @@ def average(numbers):
         average([70, 80, 90]) -> 80.0
         average([1, 2])       -> 1.5
     """
-    raise NotImplementedError("Write your code here")
+    if not numbers:
+        raise ValueError("Cannot average an empty list")
+    return round(sum(numbers) / len(numbers), 1)
 
 
 def passing_scores(scores, pass_mark=40):
@@ -24,7 +26,7 @@ def passing_scores(scores, pass_mark=40):
     Example:
         passing_scores([78, 35, 40, 12]) -> [78, 40]
     """
-    raise NotImplementedError("Write your code here")
+    return [score for score in scores if score >= pass_mark]
 
 
 def word_frequencies(text):
@@ -33,7 +35,10 @@ def word_frequencies(text):
     Example:
         word_frequencies("the cat and The dog") -> {"the": 2, "cat": 1, "and": 1, "dog": 1}
     """
-    raise NotImplementedError("Write your code here")
+    counts = {}
+    for word in text.lower().split():
+        counts[word] = counts.get(word, 0) + 1
+    return counts
 
 
 def top_student(scores):
@@ -42,4 +47,10 @@ def top_student(scores):
     Example:
         top_student({"Ada": 78, "Grace": 91, "Alan": 64}) -> "Grace"
     """
-    raise NotImplementedError("Write your code here")
+    best_name = ""
+    best_score = -1
+    for name, score in scores.items():
+        if score > best_score:
+            best_name = name
+            best_score = score
+    return best_name

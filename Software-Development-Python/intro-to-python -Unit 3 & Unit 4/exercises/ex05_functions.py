@@ -25,7 +25,7 @@ def greet(name):
     Example:
         greet("Ada") -> "Hello, Ada!"
     """
-    raise NotImplementedError("Write your code here")
+    return f"Hello, {name}!"
 
 
 def celsius_to_fahrenheit(celsius):
@@ -35,7 +35,7 @@ def celsius_to_fahrenheit(celsius):
         celsius_to_fahrenheit(0)   -> 32.0
         celsius_to_fahrenheit(100) -> 212.0
     """
-    raise NotImplementedError("Write your code here")
+    return celsius * 9 / 5 + 32
 
 
 def is_even(number):
@@ -45,7 +45,7 @@ def is_even(number):
         is_even(4) -> True
         is_even(7) -> False
     """
-    raise NotImplementedError("Write your code here")
+    return number % 2 == 0
 
 
 def total_cost(price, quantity, vat_rate=0.2):
@@ -57,7 +57,7 @@ def total_cost(price, quantity, vat_rate=0.2):
         total_cost(10, 3)      -> 36.0
         total_cost(4.99, 2, 0) -> 9.98
     """
-    raise NotImplementedError("Write your code here")
+    return round(price * quantity * (1 + vat_rate), 2)
 
 
 def grade_band(score):
@@ -71,7 +71,15 @@ def grade_band(score):
         grade_band(39)  -> "Fail"
         grade_band(101) -> "Invalid"
     """
-    raise NotImplementedError("Write your code here")
+    if score < 0 or score > 100:
+        return "Invalid"
+    if score >= 70:
+        return "Distinction"
+    if score >= 60:
+        return "Merit"
+    if score >= 40:
+        return "Pass"
+    return "Fail"
 
 
 def describe_result(name, score):
@@ -80,4 +88,4 @@ def describe_result(name, score):
     Example:
         describe_result("Grace", 91) -> "Grace scored 91: Distinction"
     """
-    raise NotImplementedError("Write your code here")
+    return f"{name} scored {score}: {grade_band(score)}"

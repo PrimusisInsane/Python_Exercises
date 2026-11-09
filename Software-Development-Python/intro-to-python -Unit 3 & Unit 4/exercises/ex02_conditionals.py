@@ -36,16 +36,34 @@ Task 3  Cinema ticket
 
 print("--- Task 1: grade band ---")
 score = 72
-band = None
+if score < 0 or score > 100:
+    band = "Invalid"
+elif score >= 70:
+    band = "Distinction"
+elif score >= 60:
+    band = "Merit"
+elif score >= 40:
+    band = "Pass"
+else:
+    band = "Fail"
 print(f"A score of {score} is a {band}")
 
 print("\n--- Task 2: leap year ---")
 year = 2024
-is_leap = None
+is_leap = (year % 4 == 0 and year % 100 != 0) or year % 400 == 0
 print(f"Is {year} a leap year? {is_leap}")
 
 print("\n--- Task 3: cinema ticket ---")
 age = 25
 is_student = True
-ticket_price = None
+if age < 5:
+    ticket_price = 0.0
+elif age < 18:
+    ticket_price = 5.0
+elif age >= 65:
+    ticket_price = 6.0
+elif is_student:
+    ticket_price = 7.5
+else:
+    ticket_price = 10.0
 print(f"Age {age}, student: {is_student}, ticket costs £{ticket_price}")

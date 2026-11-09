@@ -17,7 +17,9 @@ def save_lines(path, lines):
         save_lines("todo.txt", ["Install Python", "Run the examples"])
         creates todo.txt containing two lines.
     """
-    raise NotImplementedError("Write your code here")
+    with open(path, "w", encoding="utf-8") as file:
+        for line in lines:
+            file.write(line + "\n")
 
 
 def count_lines(path):
@@ -27,7 +29,11 @@ def count_lines(path):
         count_lines("todo.txt")    -> 2
         count_lines("missing.txt") -> 0
     """
-    raise NotImplementedError("Write your code here")
+    try:
+        with open(path, encoding="utf-8") as file:
+            return len(file.readlines())
+    except FileNotFoundError:
+        return 0
 
 
 def load_scores(path):
@@ -38,4 +44,8 @@ def load_scores(path):
     Example, for data/students.csv:
         load_scores("data/students.csv")["Grace"] -> 91
     """
-    raise NotImplementedError("Write your code here")
+    scores = {}
+    with open(path, newline="", encoding="utf-8") as file:
+        for row in csv.DictReader(file):
+            scores[row["name"]] = int(row["score"])
+    return scores

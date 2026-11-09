@@ -15,7 +15,13 @@ DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 
 def grade_band(score: int) -> str:
     """Return "Distinction" (70+), "Merit" (60+), "Pass" (40+) or "Fail"."""
-    raise NotImplementedError("Write your code here")
+    if score >= 70:
+        return "Distinction"
+    if score >= 60:
+        return "Merit"
+    if score >= 40:
+        return "Pass"
+    return "Fail"
 
 
 def read_students(path: str) -> list[dict]:
@@ -26,12 +32,16 @@ def read_students(path: str) -> list[dict]:
     Example:
         read_students("data/students.csv")[0] -> {"name": "Ada", "course": "Software Development", "score": 78}
     """
-    raise NotImplementedError("Write your code here")
+    students = []
+    with open(path, newline="", encoding="utf-8") as file:
+        for row in csv.DictReader(file):
+            students.append({"name": row["name"], "course": row["course"], "score": int(row["score"])})
+    return students
 
 
 def class_average(students: list[dict]) -> float:
     """Return the average score of all students, rounded to 1 decimal place."""
-    raise NotImplementedError("Write your code here")
+    return round(sum(student["score"] for student in students) / len(students), 1)
 
 
 def band_counts(students: list[dict]) -> dict[str, int]:
@@ -42,7 +52,11 @@ def band_counts(students: list[dict]) -> dict[str, int]:
     Example:
         {"Distinction": 3, "Merit": 1, "Pass": 1, "Fail": 1}
     """
-    raise NotImplementedError("Write your code here")
+    counts: dict[str, int] = {}
+    for student in students:
+        band = grade_band(student["score"])
+        counts[band] = counts.get(band, 0) + 1
+    return counts
 
 
 def write_report(students: list[dict], path: str) -> int:
@@ -50,7 +64,13 @@ def write_report(students: list[dict], path: str) -> int:
 
     Return the number of students written.
     """
-    raise NotImplementedError("Write your code here")
+    ordered = sorted(students, key=lambda student: student["score"], reverse=True)
+    with open(path, "w", newline="", encoding="utf-8") as file:
+        writer = csv.writer(file)
+        writer.writerow(["name", "score", "band"])
+        for student in ordered:
+            writer.writerow([student["name"], student["score"], grade_band(student["score"])])
+    return len(ordered)
 
 
 def main() -> None:

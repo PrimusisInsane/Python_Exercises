@@ -18,19 +18,20 @@ class Rectangle:
 
     def __init__(self, width: float, height: float) -> None:
         """Store the width and height."""
-        raise NotImplementedError("Write your code here")
+        self.width = width
+        self.height = height
 
     def area(self) -> float:
         """Return width multiplied by height."""
-        raise NotImplementedError("Write your code here")
+        return self.width * self.height
 
     def perimeter(self) -> float:
         """Return the total length of all four sides."""
-        raise NotImplementedError("Write your code here")
+        return 2 * (self.width + self.height)
 
     def is_square(self) -> bool:
         """Return True if the width and height are equal."""
-        raise NotImplementedError("Write your code here")
+        return self.width == self.height
 
 
 class BankAccount:
@@ -50,16 +51,23 @@ class BankAccount:
 
     def __init__(self, owner: str, balance: float = 0) -> None:
         """Store the owner's name and the opening balance."""
-        raise NotImplementedError("Write your code here")
+        self.owner = owner
+        self.balance = balance
 
     def deposit(self, amount: float) -> None:
         """Add a positive amount to the balance."""
-        raise NotImplementedError("Write your code here")
+        if amount <= 0:
+            raise ValueError("Deposit must be positive")
+        self.balance += amount
 
     def withdraw(self, amount: float) -> None:
         """Remove a positive amount that is no more than the balance."""
-        raise NotImplementedError("Write your code here")
+        if amount <= 0:
+            raise ValueError("Withdrawal must be positive")
+        if amount > self.balance:
+            raise ValueError("Insufficient funds")
+        self.balance -= amount
 
     def __str__(self) -> str:
         """Return the owner and balance, for example "Ada: £150.00"."""
-        raise NotImplementedError("Write your code here")
+        return f"{self.owner}: £{self.balance:.2f}"

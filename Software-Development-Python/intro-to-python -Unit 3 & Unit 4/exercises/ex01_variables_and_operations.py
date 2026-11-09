@@ -31,25 +31,25 @@ Task 4  Names
 
 print("--- Task 1: temperature ---")
 celsius = 25
-fahrenheit = None
+fahrenheit = celsius * 9 / 5 + 32
 print(f"{celsius} C is {fahrenheit} F")
 
 print("\n--- Task 2: shopping bill ---")
 price = 10
 quantity = 3
 vat_rate = 0.2
-total_cost = None
+total_cost = round(price * quantity * (1 + vat_rate), 2)
 print(f"{quantity} items at £{price} plus VAT costs £{total_cost}")
 
 print("\n--- Task 3: hours and minutes ---")
 total_minutes = 135
-hours = None
-minutes = None
+hours = total_minutes // 60
+minutes = total_minutes % 60
 print(f"{total_minutes} minutes is {hours} hours and {minutes} minutes")
 
 print("\n--- Task 4: names ---")
 first_name = "Grace"
 last_name = "Hopper"
-full_name = None
-name_length = None
+full_name = first_name + " " + last_name
+name_length = len(full_name)
 print(f"{full_name} has {name_length} characters")

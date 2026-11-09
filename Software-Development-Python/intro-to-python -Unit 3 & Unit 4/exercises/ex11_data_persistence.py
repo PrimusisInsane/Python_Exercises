@@ -18,7 +18,11 @@ def read_first_line(path):
         read_first_line("names.txt")   -> "Ada"
         read_first_line("missing.txt") -> ""
     """
-    raise NotImplementedError("Write your code here")
+    try:
+        with open(path, encoding="utf-8") as file:
+            return file.readline().rstrip("\n")
+    except FileNotFoundError:
+        return ""
 
 
 def save_settings(path, settings):
@@ -27,7 +31,8 @@ def save_settings(path, settings):
     Example:
         save_settings("settings.json", {"theme": "dark", "font_size": 14})
     """
-    raise NotImplementedError("Write your code here")
+    with open(path, "w", encoding="utf-8") as file:
+        json.dump(settings, file)
 
 
 def load_settings(path):
@@ -39,7 +44,11 @@ def load_settings(path):
         load_settings("settings.json") -> {"theme": "dark", "font_size": 14}
         load_settings("missing.json")  -> {}
     """
-    raise NotImplementedError("Write your code here")
+    try:
+        with open(path, encoding="utf-8") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return {}
 
 
 def save_object(path, value):
@@ -47,7 +56,8 @@ def save_object(path, value):
 
     Remember: pickle files are opened in binary mode, "wb".
     """
-    raise NotImplementedError("Write your code here")
+    with open(path, "wb") as file:
+        pickle.dump(value, file)
 
 
 def load_object(path):
@@ -59,7 +69,8 @@ def load_object(path):
         save_object("data.pkl", {"tags": {"a", "b"}, "point": (1, 2)})
         load_object("data.pkl") -> {"tags": {"a", "b"}, "point": (1, 2)}
     """
-    raise NotImplementedError("Write your code here")
+    with open(path, "rb") as file:
+        return pickle.load(file)
 
 
 def record_visit(path):
@@ -72,4 +83,12 @@ def record_visit(path):
         record_visit("visits.txt") -> 1
         record_visit("visits.txt") -> 2
     """
-    raise NotImplementedError("Write your code here")
+    try:
+        with open(path, encoding="utf-8") as file:
+            count = int(file.read().strip())
+    except FileNotFoundError:
+        count = 0
+    count += 1
+    with open(path, "w", encoding="utf-8") as file:
+        file.write(str(count))
+    return count
